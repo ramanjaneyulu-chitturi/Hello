@@ -1,0 +1,16 @@
+server {
+        listen 80 default_server;
+	listen [::]:80 default_server;
+	access_log /var/www/html/NNC_Django/nginx_access.log;
+	error_log /var/www/html/NNC_Django/nginx_error.log;
+	location /nnc/ {
+		proxy_pass http://localhost:8000/nnc;
+	}
+        
+	location /nnc/static/  {
+                autoindex off;
+                alias    /var/www/html/NNC_Django/static/;
+                expires 30d;
+
+        }
+}
